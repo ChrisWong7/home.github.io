@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>华超医疗科技有限公司 - 智创医械，共筑健康</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* --- 全局样式与变量 --- */
+        :root {
+            --primary-color: #002147; /* 牛津蓝 */
+            --secondary-color: #0056b3;
+            --accent-color: #e6f0ff;
+            --text-dark: #333333;
+            --text-light: #ffffff;
+            --gray-bg: #f8f9fa;
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth; /* 平滑滚动 */
+        }
+
+        body {
+            font-family: 'Noto Sans SC', sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            overflow-x: hidden;
+        }
+
+        ul { list-style: none; }
+        a { text-decoration: none; color: inherit; }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .section-padding {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 4px;
+            background: var(--primary-color);
+        }
+
+        /* --- 导航栏 --- */
+        header {
+            background: var(--primary-color);
+            color: white;
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover {
+            color: #00aaff;
+        }
+
+        .menu-toggle {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* --- Hero大图区 --- */
+        #home {
+            height: 100vh;
+            background: linear-gradient(rgba(0, 33, 71, 0.8), rgba(0, 33, 71, 0.6)), 
+                        url('https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&q=80&w=2070') no-repeat center center/cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            padding-top: 60px;
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            letter-spacing: 2px;
+        }
+
+        .hero-content p {
+            font-size: 1.5rem;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 35px;
+            background: #fff;
+            color: var(--primary-color);
+            border-radius: 50px;
+            font-weight: bold;
+            transition: var(--transition);
+        }
+
+        .btn:hover {
+            background: var(--primary-color);
+            color: white;
+            border: 1px solid white;
+        }
+
+        /* --- 关于我们 --- */
+        #about {
+            background: white;
+        }
+
+        .about-flex {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+            flex-wrap: wrap;
+        }
+
+        .about-text {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .about-text p {
+            margin-bottom: 20px;
+            color: #555;
+            text-indent: 2em;
+        }
+
+        .about-image {
+            flex: 1;
+            min-width: 300px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+
+        .about-image img {
+            width: 100%;
+            display: block;
+        }
+
+        /* --- 服务项目 --- */
+        #services {
+            background: var(--gray-bg);
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .service-card {
+            background: white;
+            padding: 40px 30px;
+            border-radius: 10px;
+            text-align: center;
+            transition: var(--transition);
+            border-bottom: 4px solid transparent;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            border-bottom: 4px solid var(--primary-color);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+        }
+
+        .service-card i {
+            font-size: 3rem;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+
+        .service-card h3 {
+            margin-bottom: 15px;
+            color: var(--primary-color);
+        }
+
+        /* --- 联系我们 --- */
+        #contact {
+            background: white;
+        }
+
+        .contact-flex {
+            display: flex;
+            gap: 50px;
+            flex-wrap: wrap;
+        }
+
+        .contact-info {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .info-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+
+        .info-item i {
+            width: 40px;
+            height: 40px;
+            background: var(--accent-color);
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+        }
+
+        .contact-form {
+            flex: 1.5;
+            min-width: 300px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            outline: none;
+        }
+
+        textarea { height: 150px; }
+
+        .submit-btn {
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .submit-btn:hover {
+            background: #003366;
+        }
+
+        /* 模拟地图占位 */
+        .map-placeholder {
+            width: 100%;
+            height: 250px;
+            background: #eee;
+            margin-top: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #777;
+            border-radius: 5px;
+            border: 1px dashed #ccc;
+        }
+
+        /* --- 页脚 --- */
+        footer {
+            background: var(--primary-color);
+            color: white;
+            padding: 40px 0 20px;
+            text-align: center;
+        }
+
+        .social-links {
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .social-links a {
+            font-size: 1.5rem;
+            transition: var(--transition);
+        }
+
+        .social-links a:hover {
+            color: #00aaff;
+        }
+
+        .copyright {
+            font-size: 0.9rem;
+            opacity: 0.7;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding-top: 20px;
+        }
+
+        /* --- 响应式设计 --- */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none; /* 简易移动端菜单可通过JS切换 */
+                flex-direction: column;
+                position: absolute;
+                top: 60px;
+                left: 0;
+                width: 100%;
+                background: var(--primary-color);
+                padding: 20px;
+                text-align: center;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+
+            .hero-content h1 {
+                font-size: 2.2rem;
+            }
+
+            .about-flex {
+                flex-direction: column-reverse;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">
+                    <i class="fas fa-microscope"></i> 华超医疗
+                </div>
+                <ul class="nav-links" id="navLinks">
+                    <li><a href="#home">首页</a></li>
+                    <li><a href="#about">关于我们</a></li>
+                    <li><a href="#services">服务项目</a></li>
+                    <li><a href="#contact">联系我们</a></li>
+                </ul>
+                <div class="menu-toggle" onclick="toggleMenu()">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <section id="home">
+        <div class="container">
+            <div class="hero-content">
+                <h1>智创医械，共筑健康</h1>
+                <p>聚焦前沿消融技术，引领微创医疗新时代</p>
+                <a href="#about" class="btn">了解更多</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="section-padding">
+        <div class="container">
+            <div class="section-title">
+                <h2>关于我们</h2>
+            </div>
+            <div class="about-flex">
+                <div class="about-text">
+                    <p>苏州华超医疗科技有限公司成立于2023年底，是一家聚焦泌尿外科、消化科与呼吸科等领域的创新型医疗器械企业。公司落户苏州太湖科学城功能片区江苏医疗器械科技产业园Medpark。</p>
+                    <p>我们依托自主研发的有源蒸汽消融技术创新平台，专注于高端医疗器械的产业化发展。华超医疗致力于探索新一代双模态蒸汽技术，已在自主知识产权方面取得重要成果。</p>
+                    <p>目前，公司已累计申请多项发明专利及PCT国际专利，并顺利完成多例临床入组，正稳步迈向产品商业化阶段。</p>
+                </div>
+                <div class="about-image">
+                    <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&q=80&w=800" alt="实验室研发">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="services" class="section-padding">
+        <div class="container">
+            <div class="section-title">
+                <h2>主要业务</h2>
+            </div>
+            <div class="services-grid">
+                <div class="service-card">
+                    <i class="fas fa-fire-alt"></i>
+                    <h3>有源蒸汽消融</h3>
+                    <p>基于自主研发的双模态蒸汽技术平台，提供针对泌尿及呼吸系统的微创消融解决方案。</p>
+                </div>
+                <div class="service-card">
+                    <i class="fas fa-brain"></i>
+                    <h3>AI 医疗辅助</h3>
+                    <p>结合人工智能算法，提升医疗设备在术中定位与病灶识别的精准度与效率。</p>
+                </div>
+                <div class="service-card">
+                    <i class="fas fa-stethoscope"></i>
+                    <h3>微创介入器械</h3>
+                    <p>专注于消化科与呼吸科的高端介入耗材开发，助力医生完成更安全的复杂手术。</p>
+                </div>
+                <div class="service-card">
+                    <i class="fas fa-vials"></i>
+                    <h3>科研创新合作</h3>
+                    <p>与国内外顶尖临床专家深度合作，将最前沿的临床需求转化为成熟的医疗产品。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="section-padding">
+        <div class="container">
+            <div class="section-title">
+                <h2>联系我们</h2>
+            </div>
+            <div class="contact-flex">
+                <div class="contact-info">
+                    <div class="info-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div>
+                            <h4>公司地址</h4>
+                            <p>苏州市高新区雁荡山路8号2号楼</p>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-envelope"></i>
+                        <div>
+                            <h4>电子邮件</h4>
+                            <p>contact@huachaomedical.com</p>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-phone"></i>
+                        <div>
+                            <h4>联系电话</h4>
+                            <p>0512-XXXX-XXXX</p>
+                        </div>
+                    </div>
+                    <div class="map-placeholder">
+                        <i class="fas fa-map"></i> &nbsp; [地图：江苏医疗器械科技产业园Medpark]
+                    </div>
+                </div>
+
+                <div class="contact-form">
+                    <form id="medForm">
+                        <div class="form-group">
+                            <input type="text" placeholder="您的姓名" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" placeholder="您的邮箱" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" placeholder="咨询主题">
+                        </div>
+                        <div class="form-group">
+                            <textarea placeholder="您的留言内容..."></textarea>
+                        </div>
+                        <button type="submit" class="submit-btn">发送消息</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="social-links">
+                <a href="#"><i class="fab fa-weixin"></i></a>
+                <a href="#"><i class="fab fa-linkedin"></i></a>
+                <a href="#"><i class="fas fa-envelope"></i></a>
+            </div>
+            <p>华超医疗科技有限公司 - 智创医械，共筑健康</p>
+            <div class="copyright">
+                &copy; 2024-2026 华超医疗科技有限公司 版权所有 | 苏ICP备XXXXXXXX号
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // 移动端菜单切换
+        function toggleMenu() {
+            const nav = document.getElementById('navLinks');
+            nav.classList.toggle('active');
+        }
+
+        // 点击导航链接后自动关闭移动端菜单
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                document.getElementById('navLinks').classList.remove('active');
+            });
+        });
+
+        // 简单的表单提交交互
+        document.getElementById('medForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('感谢您的留言！我们会尽快与您取得联系。');
+            this.reset();
+        });
+
+        // 导航栏滚动变色效果（可选）
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('header');
+            if (window.scrollY > 50) {
+                header.style.background = '#001a38';
+                header.style.padding = '0.5rem 0';
+            } else {
+                header.style.background = '#002147';
+                header.style.padding = '1rem 0';
+            }
+        });
+    </script>
+</body>
+</html>
